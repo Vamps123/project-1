@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Genius</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://w7.pngwing.com/pngs/64/443/png-transparent-technology-background-effects-cool-colored-beams-light-changes-creative-creative-abstract-background-thumbnail.png');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #000;
+            color: #003cff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        header nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        header nav ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #003cff;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 200px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #003cff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.text {
+    flex: 1;
+}
+
+.left {
+    order: 1;
+}
+
+.right {
+    order: 2;
+    text-align: right;
+}
+
+.left img,
+.right img {
+    float: right;
+    margin-left: 20px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tech Genius</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#signup">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h2>Welcome to Tech Genius</h2>
+            <div class="container">
+                <div class="text-left">
+                    <p>Tech Genius provides very accurate solutions for your problems.</p>
+                </div>
+                <img src="https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?cs=srgb&dl=pexels-pixabay-356056.jpg&fm=jpg" alt="Technology Trends" width="500">
+            </div>
+            <br>
+            <div class="container">
+                <img src="https://www.simplilearn.com/ice9/free_resources_article_thumb/Technology_Trends.jpg" alt="Technology Trends" width="500">
+                <div class="text-right">
+                    <p>Tech Genius is a genius software that caters to all your queries.</p>
+                </div>
+        </section>
+        
+        <section id="features" class="services">
+            <h2>Our Services</h2>
+            <ul>
+                <li>
+                    <h3>Web Development</h3>
+                    <p>We specialize in building responsive and user-friendly websites for businesses of all sizes.</p>
+                </li>
+                <li>
+                    <h3>Mobile App Development</h3>
+                    <p>Our team of experienced developers can create custom mobile apps for both iOS and Android platforms.</p>
+                </li>
+                <li>
+                    <h3>Digital Marketing</h3>
+                    <p>We offer comprehensive digital marketing solutions, including SEO, PPC, and social media marketing.</p>
+                </li>
+            </ul>
+        </section>
+        <section id="login" class="features">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
+                <button type="submit">Login</button>
+            </form>
+        </section>
+        <section id="signup" class="features">
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br>
+                <label for="password-signup">Password:</label>
+                <input type="password" id="password-signup" name="password" required><br>
+                <button type="submit">Sign Up</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; Tech Genius. All rights reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+        
+            if (username && password) {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'your_api_endpoint', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            window.location.href = 'dashboard.html';
+                        } else {
+                            alert('Login failed. Please check your username and password.');
+                        }
+                    }
+                };
+                const data = {
+                    username: username,
+                    password: password
+                };
+                xhr.send(JSON.stringify(data));
+            } else {
+                alert('Please enter your username and password.');
+            }
+        });
+        
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password-signup').value;
+        
+            if (name && email && password) {
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'your_api_endpoint', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            alert('Signup successful. Please login.');
+                        } else {
+                            alert('Signup failed. Please check your details.');
+                        }
+                    }
+                };
+                const data = {
+                    name: name,
+                    email: email,
+                    password: password
+                };
+                xhr.send(JSON.stringify(data));
+            } else {
+                alert('Please enter all required fields.');
+            }
+        });
+    </script>
+</body>
+</html>
